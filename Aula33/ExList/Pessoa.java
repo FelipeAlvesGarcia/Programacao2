@@ -1,4 +1,4 @@
-package Aula33;
+package Aula33.ExList;
 
 /**
  *
@@ -44,4 +44,4 @@ public class Pessoa {
         String frase = "Nome: "+nome+" "+sobrenome+" mede: "+altura+"m";
         return frase;
     }
-}
+}   
