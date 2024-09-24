@@ -57,7 +57,63 @@ public class Main {
                 case 'a' ->{
                     System.out.print("Digite o nome do paciente a alterar: ");
                     String nome = ler.next();
-                    System.out.println(listaPacientes.indexOf(nome));
+                    System.out.print("Digite o sobrenome do paciente a alterar: ");
+                    String sobrenome = ler.next();
+                    Paciente aux = new Paciente(nome, sobrenome);
+                    int i = listaPacientes.indexOf(nome);
+                    if(listaPacientes.get(i).equals(aux)){
+                    char opcao2 = 'z';
+                        do{
+                            System.out.println("\nAlterar Nome (N)");
+                            System.out.println("Alterar Sobrenome (S)");
+                            System.out.println("Alterar Data (D)");
+                            System.out.println("Alterar Sair (E)");
+                            System.out.print("Digite sua opção:");
+                            opcao2 = ler.next().toLowerCase().charAt(0);
+                            
+                            switch(opcao2){
+                                case 'n' ->{
+                                    System.out.print("Digite o novo nome: ");
+                                    String nomeNovo = ler.next();
+                                    listaPacientes.get(i).setNome(nomeNovo);
+                                }
+                                case 's' ->{
+                                    System.out.print("Digite o novo sobrenome: ");
+                                    String sobrenomeNovo = ler.next();
+                                    listaPacientes.get(i).setSobrenome(sobrenomeNovo);
+                                }
+                                case 'd' ->{
+                                    System.out.print("Digite a nova data: ");
+                                    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                    boolean valida = true;
+                                    LocalDate dataNova = LocalDate.now();
+                                    do {
+                                        System.out.print("Digite uma data no formato (dd/MM/aaaa): ");
+                                        String dataStr = ler.next();
+                                        try{
+                                            dataNova = LocalDate.parse(dataStr,formato);
+                                            valida = true;
+                                        }
+                                        catch (DateTimeParseException e){
+                                            System.out.println("Formato inválido!"+e);
+                                            valida = false;
+                                        }
+                                    }
+                                    while (!valida);
+                                    listaPacientes.get(i).setDataNascimento(dataNova);
+                                }
+                                case 'e' ->{
+                                    
+                                }
+                                default ->{
+                                    System.out.println("Opção Inexistente!");
+                                }
+                            }
+                        }while(opcao2 != 's');
+                    }
+                    else
+                        System.out.println("Paciente não encontrado");
+                    
                 }
                 case 'l' ->{
                     System.out.println(listaPacientes);

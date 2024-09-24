@@ -25,16 +25,26 @@ public class Paciente {
         this.dataNascimento = dataNascimento;
         atendimentos = new ArrayList<Atendimento>();
     }
+    public Paciente(String nome, String sobrenome){
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+    }
     public Paciente(){
         atendimentos = new ArrayList<Atendimento>();
     }
-    
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public String getSobrenome() {
+        return sobrenome;
+    }
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+    
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -44,7 +54,7 @@ public class Paciente {
     public ArrayList<Atendimento> getAtendimentos() {
         return atendimentos;
     }
-
+    
     public void adicionarConsulta (Atendimento atendimento){
         atendimentos.add(atendimento);
     }    
@@ -55,7 +65,14 @@ public class Paciente {
     }
     
     @Override
-    public 
+    public boolean equals (Object o){
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Paciente pessoa = (Paciente) o;
+        return nome.equals(pessoa.nome) && sobrenome.equals(pessoa.sobrenome);
+    }
     @Override
     public String toString() {
         String retorno = "Nome: " + nome + " " + sobrenome;
